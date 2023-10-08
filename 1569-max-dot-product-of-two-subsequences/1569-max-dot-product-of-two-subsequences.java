@@ -24,8 +24,8 @@ class Solution {
                 int currentMultiplication = nums1[j]*nums2[i];
                 int diagonal = dp[i-1][j-1];
                 int diagonalPlusCurrent = diagonal+currentMultiplication;
-                // dp[i][j] = Math.max(top,left,currentMultiplication,diagonal,diagonalPlusCurrent);
-                dp[i][j] = Math.max( top, Math.max(left, Math.max(currentMultiplication,Math.max(diagonal,diagonalPlusCurrent ) ) ) );
+                dp[i][j] = max(top,left,currentMultiplication,diagonal,diagonalPlusCurrent);
+                // dp[i][j] = Math.max( top, Math.max(left, Math.max(currentMultiplication,Math.max(diagonal,diagonalPlusCurrent ) ) ) );
             }
         }
         for(int i = 0;i<dp.length;i++){
@@ -36,4 +36,13 @@ class Solution {
         }
         return dp[m-1][n-1];
     }
+
+    public static int max(int... values) {
+        int max = Integer.MIN_VALUE;
+        for (int value : values) {
+            max = Math.max(max, value);
+        }
+        return max;
+    }
+
 }

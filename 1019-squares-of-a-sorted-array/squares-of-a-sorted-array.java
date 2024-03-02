@@ -18,6 +18,7 @@ class Solution {
             }
             index--;
         }
+        System.gc();
         return sol;
     }
 }

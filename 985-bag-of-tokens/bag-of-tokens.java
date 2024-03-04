@@ -19,8 +19,7 @@ class Solution {
                 ptr2--;
             }
             else{
-                ptr1++;
-                ptr2--;
+               return ans;
             }
         }
         return ans;

@@ -1,29 +1,18 @@
 class Solution {
     public int numRescueBoats(int[] people, int limit) {
-        Arrays.sort(people);
-        int n = people.length;
-        int max = 0;
-        int i = 0;
-        int j = n-1;
-        int ans = 0;
-        while(i<=j){
-            int sum = 0;
-            sum = people[i]+people[j];
-            if(i==j){
-                ans++;
-                break;
-            }
-            if(sum <= limit){
-                ans++;
-                i++;
-                j--;
-            }
-            else {
-                ans++;
-                j--;
-            }
+        int[] buckets = new int[limit+1];
+        for(int p: people) buckets[p]++;
+        int start = 0;
+        int end = buckets.length - 1;
+        int solution = 0;
+        while(start <= end) {
+            while(start <= end && buckets[start] <= 0) start++;
+            while(start <= end && buckets[end] <= 0) end--;
+            if(buckets[start] <= 0 && buckets[end] <= 0) break;
+            solution++;
+            if(start + end <= limit) buckets[start]--; // both start and end can carry on the boat
+            buckets[end]--;
         }
-        return ans;
+        return solution;
     }
 }
-// 1 2 2 3
